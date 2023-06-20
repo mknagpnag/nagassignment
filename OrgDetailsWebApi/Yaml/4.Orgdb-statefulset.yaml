@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: orgdetails-database-deployment
+spec:
+  serviceName: orgdetails-database-service
+  replicas: 1
+  selector:
+    matchLabels:
+      app: orgdetails-database
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: orgdetails-database
+    spec:
+      containers:
+        - name: orgdetails-database
+          image: mcr.microsoft.com/mssql/server
+          ports:
+            - containerPort: 1433
+          env:
+            - name: "ACCEPT_EULA"
+              value: "Y"
+            - name: "SA_PASSWORD"
+              valueFrom:
+                secretKeyRef:
+                  name: mssql
+                  key: SA_PASSWORD
+            - name: "MSSQL_PID"
+              value: "Express"
+          volumeMounts:
+            - name: mssqldb
+              mountPath: /mssql/data
+            - name: secret-volume
+              mountPath: /etc/secretVolume  
+      volumes:
+      - name: mssqldb
+        persistentVolumeClaim:
+          claimName: persistant-volume-claim  
+      - name: secret-volume
+        secret:
+          secretName: mssql 
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Delete  

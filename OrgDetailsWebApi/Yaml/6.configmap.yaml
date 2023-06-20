@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orgdetails-database-config
+data:
+  HOST: orgdetails-database-service
+  SQL_USER: sa
+  PORT: '1433'
+  SQL_DATABASE: OrgDetails
+  #connection_string: "Server=orgdetails-database-service;Database=OrgDetails;User=sa;Password=Passw0rd@123;MultipleActiveResultSets=true;TrustServerCertificate=True"

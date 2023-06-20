@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orgdetails-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: orgdetails
+  template:
+    metadata:
+      labels:
+        app: orgdetails
+        zone: prod
+        version: v1
+    spec:
+      containers:
+        - name: orgdetailscontainer
+          image:  mknagp/orgdetails-web_service:v1
+          ports:
+            - containerPort: 80
+          env:
+          - name: HOST
+            valueFrom:
+              configMapKeyRef:
+                name: orgdetails-database-config
+                key: HOST
+          - name: SQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: orgdetails-database-config
+                key: SQL_USER
+          - name: PORT
+            valueFrom:
+              configMapKeyRef:
+                name: orgdetails-database-config
+                key: PORT
+          - name: SA_PASSWORD
+            valueFrom:
+             secretKeyRef:
+              name: mssql
+              key: SA_PASSWORD
+          - name: SQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: orgdetails-database-config
+                key: SQL_DATABASE        
