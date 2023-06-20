@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>20230620031224_initialcreate.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Migrations\\20230620031224_initialcreate.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>20230620031224_initialcreate.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore.Migrations;
+
+<span class="hljs-meta">#nullable disable</span>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">pragma</span> <span class="hljs-meta-keyword">warning</span> disable CA1814 // Prefer jagged arrays over multidimensional</span>
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">OrgDetails.Migrations</span>
+{
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>/ <inheritdoc /></p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">    <span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">initialcreate</span> : <span class="hljs-title">Migration</span>
+    {
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>/ <inheritdoc /></p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Up</span>(<span class="hljs-params">MigrationBuilder migrationBuilder</span>)</span>
+        {
+            migrationBuilder.CreateTable(
+                name: <span class="hljs-string">"EmployeeDetails"</span>,
+                columns: table =&gt; <span class="hljs-keyword">new</span>
+                {
+                    Id = table.Column&lt;<span class="hljs-keyword">int</span>&gt;(type: <span class="hljs-string">"int"</span>, nullable: <span class="hljs-literal">false</span>)
+                        .Annotation(<span class="hljs-string">"SqlServer:Identity"</span>, <span class="hljs-string">"1, 1"</span>),
+                    FirstName = table.Column&lt;<span class="hljs-keyword">string</span>&gt;(type: <span class="hljs-string">"nvarchar(max)"</span>, nullable: <span class="hljs-literal">false</span>),
+                    LastName = table.Column&lt;<span class="hljs-keyword">string</span>&gt;(type: <span class="hljs-string">"nvarchar(max)"</span>, nullable: <span class="hljs-literal">false</span>),
+                    Email = table.Column&lt;<span class="hljs-keyword">string</span>&gt;(type: <span class="hljs-string">"nvarchar(max)"</span>, nullable: <span class="hljs-literal">false</span>)
+                },
+                constraints: table =&gt;
+                {
+                    table.PrimaryKey(<span class="hljs-string">"PK_EmployeeDetails"</span>, x =&gt; x.Id);
+                });
+
+            migrationBuilder.InsertData(
+                table: <span class="hljs-string">"EmployeeDetails"</span>,
+                columns: <span class="hljs-keyword">new</span>[] { <span class="hljs-string">"Id"</span>, <span class="hljs-string">"Email"</span>, <span class="hljs-string">"FirstName"</span>, <span class="hljs-string">"LastName"</span> },
+                values: <span class="hljs-keyword">new</span> <span class="hljs-keyword">object</span>[,]
+                {
+                    { <span class="hljs-number">1</span>, <span class="hljs-string">"steve.william@dummy.com"</span>, <span class="hljs-string">"Steve"</span>, <span class="hljs-string">"William"</span> },
+                    { <span class="hljs-number">2</span>, <span class="hljs-string">"mark.taylor@dummy.com"</span>, <span class="hljs-string">"Mark"</span>, <span class="hljs-string">"Taylor"</span> },
+                    { <span class="hljs-number">3</span>, <span class="hljs-string">"nick.jonas@dummy.com"</span>, <span class="hljs-string">"Nick"</span>, <span class="hljs-string">"Jonas"</span> }
+                });
+        }
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>/ <inheritdoc /></p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Down</span>(<span class="hljs-params">MigrationBuilder migrationBuilder</span>)</span>
+        {
+            migrationBuilder.DropTable(
+                name: <span class="hljs-string">"EmployeeDetails"</span>);
+        }
+    }
+}
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
